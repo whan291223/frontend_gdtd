@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import liff from "@line/liff";
 import { createUserProfile, updateUser } from "../api/userApi";
 
@@ -9,6 +10,7 @@ interface LineProfile {
 }
 
 export default function ProfilePage() {
+  const navigate = useNavigate();
   const [profile, setProfile] = useState<LineProfile | null>(null);
   const [realName, setRealName] = useState("");
   const [surname, setSurname] = useState("");
@@ -24,13 +26,38 @@ export default function ProfilePage() {
     try {
       const res = await fetch("/api/v0.1/users/liff-id");
       const data = await res.json();
+      console.log("LIFF ID response:", data);
       await liff.init({ liffId: data.liffId, withLoginOnExternalBrowser: true });
       if (!liff.isLoggedIn()) { liff.login(); return; }
       const lineProfile = await liff.getProfile();
-      setProfile({ userId: lineProfile.userId, displayName: lineProfile.displayName, pictureUrl: lineProfile.pictureUrl });
+
+      // ── Check if user already exists in DB ──
+      const checkRes = await fetch(`/api/v0.1/users/${lineProfile.userId}`);
+      if (checkRes.ok) {
+        const existingUser = await checkRes.json();
+        // If user record found and has a real_name, skip profile setup
+        if (existingUser && existingUser.real_name) {
+          navigate("/dashboard", { replace: true });
+          return;
+        }
+      }
+
+      // User doesn't exist yet — show the profile creation form
+      setProfile({
+        userId: lineProfile.userId,
+        displayName: lineProfile.displayName,
+        pictureUrl: lineProfile.pictureUrl,
+      });
+
       try {
-        await createUserProfile({ line_user_id: lineProfile.userId, display_name: lineProfile.displayName, picture_url: lineProfile.pictureUrl });
-      } catch (apiErr) { console.error("Failed to sync profile:", apiErr); }
+        await createUserProfile({
+          line_user_id: lineProfile.userId,
+          display_name: lineProfile.displayName,
+          picture_url: lineProfile.pictureUrl,
+        });
+      } catch (apiErr) {
+        console.error("Failed to sync profile:", apiErr);
+      }
     } catch (err: any) {
       setError(err?.message ?? "Failed to initialize LIFF");
     } finally {
@@ -44,7 +71,9 @@ export default function ProfilePage() {
     try {
       await updateUser(profile.userId, { real_name: realName, surname });
       setSaved(true);
-      setTimeout(() => setSaved(false), 3000);
+      setTimeout(() => {
+        navigate("/dashboard", { replace: true });
+      }, 1000);
     } catch (err) {
       console.error("Failed to update user:", err);
     }
@@ -151,7 +180,7 @@ export default function ProfilePage() {
                   : "bg-emerald-500 hover:bg-emerald-400 active:scale-95 text-gray-950"
               }`}
             >
-              {saved ? "✓ Saved!" : "Save Profile"}
+              {saved ? "✓ Redirecting…" : "Save Profile"}
             </button>
           </form>
 

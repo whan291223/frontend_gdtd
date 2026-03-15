@@ -5,7 +5,7 @@ import tailwindcss from '@tailwindcss/vite';
 export default defineConfig({
   plugins: [react(),  tailwindcss()],
   server: {
-    allowedHosts: ['balloon-fire-birds-smilies.trycloudflare.com'],
+    allowedHosts: ['mature-junior-you-innovations.trycloudflare.com'],
     proxy: {
       "/api": {
         target: "http://localhost:8000",
