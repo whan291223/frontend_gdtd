@@ -29,7 +29,7 @@ const cards: NavCard[] = [
     icon: "🧪",
     label: "Spent-NAF Test",
     description: "Take the latest spent-NAF assessment",
-    route: "/test/spent-naf",
+    route: "/test/spent",
     accent: "text-violet-400",
     bgAccent: "bg-violet-500/10",
     borderAccent: "border-violet-500/30 hover:border-violet-400/60",
