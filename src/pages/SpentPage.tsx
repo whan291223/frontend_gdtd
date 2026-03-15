@@ -63,7 +63,7 @@ export default function SpentPage() {
     if (data.is_high_risk) {
       navigate("/test/naf", { state: { sessionId: data.session_id } });
     } else {
-      navigate("/dashboard");
+      navigate("/test/complete");
     }
   }
 
@@ -82,7 +82,7 @@ export default function SpentPage() {
           {/* Progress header */}
           <div className="px-6 pt-6 pb-4 border-b border-gray-800">
             <div className="flex justify-between text-xs text-gray-500 mb-2">
-              <span>Spent-NAF test</span>
+              <span>Spent test</span>
               <span>Question <span className="text-white font-medium">{current + 1}</span> of {SPENT_QUESTIONS.length}</span>
             </div>
             <div className="h-1 bg-gray-800 rounded-full overflow-hidden">
