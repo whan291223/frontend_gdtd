@@ -1,4 +1,6 @@
 import { useNavigate } from "react-router-dom";
+import { useEffect, useState } from "react";
+import liff from "@line/liff";
 
 interface NavCard {
   id: number;
@@ -66,6 +68,53 @@ const cards: NavCard[] = [
 
 export default function DashboardPage() {
   const navigate = useNavigate();
+  const [checking, setChecking] = useState(true);
+
+  useEffect(() => {
+    checkAuth();
+  }, []);
+
+  async function checkAuth() {
+    try {
+      // LIFF uses cached session — no redirect if already logged in
+      const res = await fetch("/api/v0.1/users/liff-id");
+      const data = await res.json();
+      await liff.init({ liffId: data.liffId, withLoginOnExternalBrowser: true });
+
+      if (!liff.isLoggedIn()) {
+        navigate("/", { replace: true });
+        return;
+      }
+
+      const lineProfile = await liff.getProfile();
+
+      const userRes = await fetch(`/api/v0.1/users/${lineProfile.userId}`);
+      if (!userRes.ok) {
+        navigate("/", { replace: true });
+        return;
+      }
+
+      const user = await userRes.json();
+      if (!user?.real_name) {
+        navigate("/", { replace: true });
+        return;
+      }
+
+    } catch {
+      navigate("/", { replace: true });
+      return;
+    }
+
+    setChecking(false);
+  }
+
+  if (checking)
+    return (
+      <div className="flex flex-col items-center justify-center min-h-screen bg-gray-950">
+        <div className="w-10 h-10 rounded-full border-2 border-gray-700 border-t-emerald-400 animate-spin" />
+        <p className="mt-4 text-sm text-gray-500 tracking-widest uppercase">Loading</p>
+      </div>
+    );
 
   return (
     <div className="min-h-screen bg-gray-950 px-4 py-10">
