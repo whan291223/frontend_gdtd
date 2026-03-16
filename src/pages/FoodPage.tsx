@@ -244,7 +244,7 @@ export default function FoodPage() {
     <div className="min-h-screen bg-gray-950 px-4 py-10">
       {/* Background glow */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[500px] h-64 bg-amber-500/5 rounded-full blur-3xl" />
+        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-125 h-64 bg-amber-500/5 rounded-full blur-3xl" />
       </div>
 
       <div className="relative max-w-sm mx-auto space-y-5">
@@ -494,7 +494,7 @@ export default function FoodPage() {
                             <button
                               onClick={() => handleEdit(entry.id)}
                               disabled={editSaving}
-                              className="flex-[2] py-2 rounded-xl bg-amber-500 hover:bg-amber-400 disabled:opacity-40 text-gray-950 text-xs font-semibold transition-all"
+                              className="flex-2 py-2 rounded-xl bg-amber-500 hover:bg-amber-400 disabled:opacity-40 text-gray-950 text-xs font-semibold transition-all"
                             >{editSaving ? "Saving…" : "Save"}</button>
                           </div>
                         </div>
@@ -505,7 +505,7 @@ export default function FoodPage() {
                             <p className="text-sm text-white font-medium truncate">{entry.food_name}</p>
                             <p className="text-xs text-gray-500 mt-0.5">{entry.calories} kcal</p>
                           </div>
-                          <div className="flex items-center gap-1.5 flex-shrink-0">
+                          <div className="flex items-center gap-1.5 shrink-0">
                             <button
                               onClick={() => startEdit(entry)}
                               className="w-7 h-7 rounded-lg border border-gray-700 flex items-center justify-center text-gray-500 hover:text-white hover:border-gray-500 transition-all"

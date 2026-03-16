@@ -164,7 +164,7 @@ export default function SpentNafHistoryPage() {
     <div className="min-h-screen bg-gray-950 px-4 py-10">
       {/* Background glow */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[500px] h-64 bg-emerald-500/5 rounded-full blur-3xl" />
+        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-125 h-64 bg-emerald-500/5 rounded-full blur-3xl" />
       </div>
 
       <div className="relative max-w-sm mx-auto space-y-6">
@@ -214,7 +214,7 @@ export default function SpentNafHistoryPage() {
                 className="w-full px-5 py-4 flex items-center gap-3 text-left hover:bg-gray-800/40 transition-colors"
               >
                 {/* Index bubble */}
-                <div className="w-8 h-8 rounded-full bg-gray-800 border border-gray-700 flex items-center justify-center flex-shrink-0">
+                <div className="w-8 h-8 rounded-full bg-gray-800 border border-gray-700 flex items-center justify-center shrink-0">
                   <span className="text-xs font-medium text-gray-400">#{records.length - index}</span>
                 </div>
 
@@ -225,7 +225,7 @@ export default function SpentNafHistoryPage() {
                 </div>
 
                 {/* Badges */}
-                <div className="flex items-center gap-2 flex-shrink-0">
+                <div className="flex items-center gap-2 shrink-0">
                   <StatusBadge status={record.status} />
                   {/* Chevron */}
                   <svg

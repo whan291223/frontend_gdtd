@@ -170,7 +170,7 @@ export default function BloodTestPage() {
     <div className="min-h-screen bg-gray-950 px-4 py-10">
       {/* Background glow */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[500px] h-64 bg-rose-500/5 rounded-full blur-3xl" />
+        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-125 h-64 bg-rose-500/5 rounded-full blur-3xl" />
       </div>
 
       <div className="relative max-w-sm mx-auto space-y-6">
@@ -287,7 +287,7 @@ export default function BloodTestPage() {
                       <button
                         onClick={() => handleEdit(record)}
                         disabled={editSaving || !editLevel}
-                        className="flex-[2] py-2 rounded-xl bg-rose-500 hover:bg-rose-400 disabled:opacity-40 text-white text-xs font-semibold transition-all active:scale-95"
+                        className="flex-2 py-2 rounded-xl bg-rose-500 hover:bg-rose-400 disabled:opacity-40 text-white text-xs font-semibold transition-all active:scale-95"
                       >
                         {editSaving ? "Saving…" : "Save Changes"}
                       </button>
@@ -297,7 +297,7 @@ export default function BloodTestPage() {
                   // ── View mode ──────────────────────────────────
                   <div className="px-5 py-4 flex items-center gap-4">
                     {/* Level number */}
-                    <div className="w-14 h-14 rounded-2xl bg-gray-800 border border-gray-700 flex flex-col items-center justify-center flex-shrink-0">
+                    <div className="w-14 h-14 rounded-2xl bg-gray-800 border border-gray-700 flex flex-col items-center justify-center shrink-0">
                       <span className="text-lg font-bold text-white leading-none">{record.blood_level}</span>
                       <span className="text-[10px] text-gray-500 mt-0.5">mg/dL</span>
                     </div>
@@ -317,7 +317,7 @@ export default function BloodTestPage() {
                     </div>
 
                     {/* Actions */}
-                    <div className="flex flex-col gap-1.5 flex-shrink-0">
+                    <div className="flex flex-col gap-1.5 shrink-0">
                       <button
                         onClick={() => startEdit(record)}
                         className="w-8 h-8 rounded-lg border border-gray-700 flex items-center justify-center text-gray-500 hover:text-white hover:border-gray-500 transition-all"

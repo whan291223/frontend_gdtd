@@ -85,7 +85,7 @@ export default function ProfileSettingsPage() {
     <div className="min-h-screen bg-gray-950 px-4 py-10">
       {/* Background glow */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[500px] h-64 bg-sky-500/5 rounded-full blur-3xl" />
+        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-125 h-64 bg-sky-500/5 rounded-full blur-3xl" />
       </div>
 
       <div className="relative max-w-sm mx-auto space-y-6">
@@ -122,10 +122,10 @@ export default function ProfileSettingsPage() {
               <img
                 src={profile.picture_url}
                 alt="LINE profile"
-                className="w-16 h-16 rounded-full object-cover ring-2 ring-gray-700 ring-offset-2 ring-offset-gray-900 flex-shrink-0"
+                className="w-16 h-16 rounded-full object-cover ring-2 ring-gray-700 ring-offset-2 ring-offset-gray-900 shrink-0"
               />
             ) : (
-              <div className="w-16 h-16 rounded-full bg-gray-800 border border-gray-700 flex items-center justify-center flex-shrink-0">
+              <div className="w-16 h-16 rounded-full bg-gray-800 border border-gray-700 flex items-center justify-center shrink-0">
                 <span className="text-xl text-gray-500">👤</span>
               </div>
             )}

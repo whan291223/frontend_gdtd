@@ -140,7 +140,7 @@ export default function DashboardPage() {
     <div className="min-h-screen bg-gray-950 px-4 py-10">
       {/* Background glow */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-64 bg-emerald-500/5 rounded-full blur-3xl" />
+        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-150 h-64 bg-emerald-500/5 rounded-full blur-3xl" />
         <div className="absolute bottom-0 right-0 w-64 h-64 bg-violet-500/5 rounded-full blur-3xl" />
       </div>
 
@@ -151,7 +151,7 @@ export default function DashboardPage() {
           <div className="flex items-center gap-4">
 
             {/* Avatar */}
-            <div className="relative flex-shrink-0">
+            <div className="relative shrink-0">
               {user?.picture_url ? (
                 <img
                   src={user.picture_url}
@@ -230,7 +230,7 @@ export default function DashboardPage() {
             >
               <div className={`
                 w-12 h-12 rounded-xl ${card.bgAccent}
-                flex items-center justify-center text-2xl flex-shrink-0
+                flex items-center justify-center text-2xl shrink-0
                 transition-transform duration-200 group-hover:scale-110
               `}>
                 {card.icon}
@@ -240,7 +240,7 @@ export default function DashboardPage() {
                 <p className="text-xs text-gray-500 mt-0.5 leading-relaxed">{card.description}</p>
               </div>
               <svg
-                className="w-4 h-4 text-gray-600 group-hover:text-gray-400 group-hover:translate-x-0.5 transition-all duration-200 flex-shrink-0"
+                className="w-4 h-4 text-gray-600 group-hover:text-gray-400 group-hover:translate-x-0.5 transition-all duration-200 shrink-0"
                 fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}
               >
                 <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
